@@ -37,6 +37,18 @@ const resolvers = {
 
       return { token, userData };
     },
+    // Create new user/generate token
+    createUser: async (parent, args) => {
+      try {
+        const newUser = await User.create(args);
+
+        const token = signToken(newUser);
+
+        return { token, newUser };
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 };
 
