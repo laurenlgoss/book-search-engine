@@ -49,6 +49,20 @@ const resolvers = {
         console.log(err);
       }
     },
+    // Find current user and add book
+    saveBook: async (parent, { input }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedBooks: input } },
+          { new: true, runValidators: true }
+        );
+
+        return updatedUser;
+      } else {
+        throw new AuthenticationError('You must be logged in.');
+      }
+    },
   },
 };
 
