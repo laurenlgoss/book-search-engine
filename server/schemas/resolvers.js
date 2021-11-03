@@ -9,8 +9,7 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findById(context.user._id)
-          .select('-__v -password') // Exclude '__v' and 'password' fields
-          .populate('books');
+          .select('-__v -password'); // Exclude '__v' and 'password' fields
 
         return userData;
       } else {
@@ -41,8 +40,10 @@ const resolvers = {
     createUser: async (parent, args) => {
       try {
         const newUser = await User.create(args);
+        console.log(newUser);
 
         const token = signToken(newUser);
+        console.log(token);
 
         return { token, newUser };
       } catch (err) {
