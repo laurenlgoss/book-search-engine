@@ -36,9 +36,9 @@ If in development mode, use the command `npm run develop` to start the servers. 
 
 ## Usage
 
-This application allows a user to create an account or log in with an existing account. Upon logging in, the user can then search for books and retrieve their title, description, author(s), link, and image if applicable. The user can then click on that book's button to save it to their profile, which can be viewed under the 'See Your Books' navigation.
+This application allows a user to create an account or log in with an existing account. Upon logging in, the user can search for books and retrieve their title, description, author(s), link, and image if applicable. The user can then click on that book's button to save it to their profile, which can be viewed under the 'See Your Books' navigation.
 
-The deployed application can be found [here]().
+The deployed application can be found [here](https://protected-tor-42729.herokuapp.com/).
 
 ## Tests
 
