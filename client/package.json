@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://laurenlgoss.github.io/book-search-engine",
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@apollo/client": "^3.4.16",
@@ -21,8 +20,6 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
