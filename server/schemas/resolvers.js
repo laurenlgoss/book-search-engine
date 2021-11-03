@@ -8,8 +8,9 @@ const resolvers = {
     // Return user data if logged in
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findById(context.user._id)
-          .select('-__v -password'); // Exclude '__v' and 'password' fields
+        const userData = await User.findById(context.user._id).select(
+          '-__v -password' // Exclude '__v' and 'password' fields
+        );
 
         return userData;
       } else {
@@ -40,10 +41,8 @@ const resolvers = {
     createUser: async (parent, args) => {
       try {
         const newUser = await User.create(args);
-        console.log(newUser);
 
         const token = signToken(newUser);
-        console.log(token);
 
         return { token, newUser };
       } catch (err) {
@@ -52,7 +51,7 @@ const resolvers = {
     },
     // Find current user and add book
     saveBook: async (parent, { input }, context) => {
-      if (context.user) {
+      if (context.user) {        
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { savedBooks: input } },
@@ -61,7 +60,7 @@ const resolvers = {
 
         return updatedUser;
       } else {
-        throw new AuthenticationError('You must be logged in.');
+        throw new AuthenticationError('You must be logged in to save a book.');
       }
     },
     // Find current user and delete book
@@ -75,7 +74,7 @@ const resolvers = {
 
         return updatedUser;
       } else {
-        throw new AuthenticationError('You must be logged in.');
+        throw new AuthenticationError('You must be logged in to delete a book.');
       }
     },
   },
